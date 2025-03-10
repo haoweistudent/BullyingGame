@@ -10,6 +10,7 @@ public class DataManager : MonoBehaviour
     public void Start()
     {
         UploadData("fuckyou", 100); //жие\2025/02/15
+        Debug.Log("test");
     }
     public void UploadData(string name, int score)
     {
