@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
@@ -15,12 +16,14 @@ public class UISystem : MonoBehaviour
     public GameObject gamePanel;
     public GameObject ScreenPanel;
     float timeCount = 0f;
-
+    public int score = 0;
+    DataSaveManager _DSM= new DataSaveManager();
     void Start()
         {
               Q_Number = PlayerPrefs.GetInt("Q_number",0);
               setJson();
               setUI();
+              score = 0;
         }
 
         // Update is called once per frame
@@ -67,7 +70,7 @@ public class UISystem : MonoBehaviour
  
     public void sent_QuestionAns(string Ans)
     {
-
+         score+= _DSM.CountScore("霸凌");
          Next_Question();
 
 
@@ -96,5 +99,10 @@ public class UISystem : MonoBehaviour
   public void gameSave(int n)
     {
         PlayerPrefs.SetInt("Q_number", n);//紀錄回答到第幾題
+    }
+    public void ReDate()
+    {
+        //重設存檔
+        PlayerPrefs.DeleteAll();
     }
 }
