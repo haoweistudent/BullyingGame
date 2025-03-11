@@ -7,9 +7,14 @@ public class StartButton : MonoBehaviour
     public GameObject gamePanel;
     public GameObject beginScreen;
 
-   public void gameStart()
+    private void Start()
+    {
+       
+    }
+    public void gameStart()
     {
         gamePanel.SetActive(true);
         beginScreen.SetActive(false);
+  
     }
 }
