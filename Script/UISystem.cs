@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -12,12 +13,13 @@ public class UISystem : MonoBehaviour
     public Text[] Question_text; //UIじン
     private List<Question_Data> QData;
     public int Q_Number = 0;//材碭肈
-    public int maxQuestion = 22;//程肈ヘ计
+    public int maxQuestion = 17;//程肈ヘ计
     public GameObject gamePanel;
     public GameObject ScreenPanel;
-    float timeCount = 0f;
     public int score = 0;
     DataSaveManager _DSM= new DataSaveManager();
+    public Text end_Panel;
+    public Image end_Image;
     void Start()
         {
               Q_Number = PlayerPrefs.GetInt("Q_number",0);
@@ -61,28 +63,40 @@ public class UISystem : MonoBehaviour
     }
     public void setUI()
     {
-            
-            Question_text[0].text = $"{QData[Q_Number].Q}\n \n{QData[Q_Number].A}\n{QData[Q_Number].B}\n{QData[Q_Number].C}\n{QData[Q_Number].D}";
-      
-        
+        Question_text[0].text = $"{QData[Q_Number].Q}";
     }
      
  
     public void sent_QuestionAns(string Ans)
     {
-         score+= _DSM.CountScore("臦");
+        string[] text;
+
+        
+         score+= _DSM.CountScore($"{Q_(Ans)}");
          Next_Question();
 
 
     }
+    string Q_(string a)
+    {
+        //硂function 琌暗ゅ矪瞶
+        if( a == "A") return (QData[Q_Number].A);
+        if( a == "B") return (QData[Q_Number].B);
+        if( a == "C") return (QData[Q_Number].C);
+        if( a == "D") return (QData[Q_Number].D);
+        return "error";
+
+    
+    }
     void Next_Question()
     {
-        timeCount = 0;
+        
         Q_Number++; 
         if(Q_Number >= maxQuestion)
         {
             gamePanel.SetActive(false);
             ScreenPanel.SetActive(true);
+            ProcessScore(score);
         }
         setUI();
 
@@ -105,4 +119,20 @@ public class UISystem : MonoBehaviour
         //砞郎
         PlayerPrefs.DeleteAll();
     }
+    void ProcessScore(int Score)
+    {
+        if (Score >= 17 && Score <= 28)
+        {
+           
+}
+        if (Score >= 29 && Score <= 39)
+        {
+
+        }
+        if (Score >=40 && Score <= 51)
+        {
+
+        }
+    }
+    
 }
