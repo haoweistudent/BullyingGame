@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/86cc4281-4102-4ea5-b434-f70bf4b407c9)# BullyingGame
+# BullyingGame
 A Unity game exploring the effects of bullying.
 
 # Download 
